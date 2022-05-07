@@ -44,6 +44,7 @@ const ResponsiveAppBar = () => {
                 color: '#000',
               }}
             >
+              {process.env.API_KEY}
               AppLike Frontend Test
             </Typography>
           </Link>

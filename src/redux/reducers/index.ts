@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-
-const rootReducer = combineReducers({});
+import chart from './chart';
+const rootReducer = combineReducers({ chart });
 
 export default rootReducer;
