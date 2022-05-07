@@ -26,7 +26,7 @@ interface Props {
   getOverview: () => void;
 }
 
-function Overview({ getOverview, chartList }: Props) {
+const Overview = ({ getOverview, chartList }: Props) => {
   useEffect(() => {
     getOverview();
   }, []);
@@ -69,7 +69,7 @@ function Overview({ getOverview, chartList }: Props) {
       </Grid>
     </Container>
   );
-}
+};
 
 Overview.prototype = {
   getOverview: PropTypes.func.isRequired,

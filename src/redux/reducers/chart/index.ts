@@ -1,6 +1,7 @@
-import { GET_OVERVIEW, SET_LOADING } from 'redux/types';
+import { GET_OVERVIEW, GET_CAMPAIGNS, SET_LOADING } from 'redux/types';
 const initialState = {
   chartList: {},
+  campaignsList: [],
   loading: false,
 };
 
@@ -11,6 +12,11 @@ export default function (state = initialState, action: any) {
       return {
         ...state,
         chartList: payload,
+      };
+    case GET_CAMPAIGNS:
+      return {
+        ...state,
+        campaignsList: payload,
       };
 
     case SET_LOADING:
