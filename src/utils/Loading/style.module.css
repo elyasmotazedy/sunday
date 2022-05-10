@@ -1,0 +1,32 @@
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+}
+
+
+.loadingBg{
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: white;
+}
+    
+
+.pulse{
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }

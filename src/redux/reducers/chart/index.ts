@@ -1,11 +1,12 @@
 import { GET_OVERVIEW, GET_CAMPAIGNS, SET_LOADING } from 'redux/types';
+import { ActionType } from 'utils/Type';
 const initialState = {
   chartList: {},
   campaignsList: [],
   loading: false,
 };
 
-export default function (state = initialState, action: any) {
+export default function (state = initialState, action: ActionType) {
   const { type, payload } = action;
   switch (type) {
     case GET_OVERVIEW:

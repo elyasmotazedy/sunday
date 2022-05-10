@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getCampaigns } from 'redux/actions/chart';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Loading from 'utils/Loading';
 import {
   LineChart,
   Line,
@@ -17,7 +18,8 @@ import {
 
 import style from './style.module.css';
 
-type ChartList = { day: string; value: number }[];
+import { ChartList } from 'utils/Type';
+
 type Campaigns = {
   id: string;
   name: string;
@@ -26,9 +28,10 @@ type Campaigns = {
 interface Props {
   campaignsList: Campaigns[];
   getCampaigns: () => void;
+  loading: boolean;
 }
 
-const Campaigns = ({ getCampaigns, campaignsList }: Props) => {
+const Campaigns = ({ getCampaigns, loading, campaignsList }: Props) => {
   const [dropDownList, setDropDownList] = useState<string[]>([]);
   const [list, setList] = useState<Campaigns[]>([]);
 
@@ -59,7 +62,9 @@ const Campaigns = ({ getCampaigns, campaignsList }: Props) => {
     setValue(event.target.value);
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <Container maxWidth="xl">
       <Grid container spacing={2}>
         <Grid item xs={12}>
@@ -97,9 +102,11 @@ const Campaigns = ({ getCampaigns, campaignsList }: Props) => {
 Campaigns.prototype = {
   getCampaigns: PropTypes.func.isRequired,
   campaignsList: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
 };
 const mapStateToProps = (state: any) => ({
   campaignsList: state.chart.campaignsList,
+  loading: state.chart.loading,
 });
 
 export default connect(mapStateToProps, { getCampaigns })(Campaigns);

@@ -1,7 +1,7 @@
 import axiosReq from 'utils/axiosConfig';
 import { GET_OVERVIEW, GET_CAMPAIGNS, SET_LOADING } from 'redux/types';
-
-export const getOverview = () => async (dispatch: any) => {
+import { Dispatch } from 'redux';
+export const getOverview = () => async (dispatch: Dispatch) => {
   try {
     dispatch({
       type: SET_LOADING,
@@ -22,13 +22,14 @@ export const getOverview = () => async (dispatch: any) => {
       payload: false,
     });
   } catch (err: any) {
+    console.log(err);
     dispatch({
       type: SET_LOADING,
       payload: false,
     });
   }
 };
-export const getCampaigns = () => async (dispatch: any) => {
+export const getCampaigns = () => async (dispatch: Dispatch) => {
   try {
     dispatch({
       type: SET_LOADING,

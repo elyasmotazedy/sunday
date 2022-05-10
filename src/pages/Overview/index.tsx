@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getOverview } from 'redux/actions/chart';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Loading from 'utils/Loading';
 import {
   LineChart,
   Line,
@@ -16,22 +17,25 @@ import {
 } from 'recharts';
 
 import style from './style.module.css';
+import { ChartList } from 'utils/Type';
 
-type ChartList = { day: string; value: number }[];
 interface Props {
   chartList: {
-    installs: ChartList;
-    revenue: ChartList;
+    installs: ChartList[];
+    revenue: ChartList[];
   };
   getOverview: () => void;
+  loading: boolean;
 }
 
-const Overview = ({ getOverview, chartList }: Props) => {
+const Overview = ({ getOverview, loading, chartList }: Props) => {
   useEffect(() => {
     getOverview();
   }, []);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <Container maxWidth="xl">
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
@@ -74,9 +78,11 @@ const Overview = ({ getOverview, chartList }: Props) => {
 Overview.prototype = {
   getOverview: PropTypes.func.isRequired,
   chartList: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
 };
 const mapStateToProps = (state: any) => ({
   chartList: state.chart.chartList,
+  loading: state.chart.loading,
 });
 
 export default connect(mapStateToProps, { getOverview })(Overview);
