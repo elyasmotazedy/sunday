@@ -27,11 +27,17 @@ type Campaigns = {
 };
 interface Props {
   campaignsList: Campaigns[];
+  addedCampaigns: Campaigns[];
   getCampaigns: () => void;
   loading: boolean;
 }
 
-const Campaigns = ({ getCampaigns, loading, campaignsList }: Props) => {
+const Campaigns = ({
+  getCampaigns,
+  loading,
+  campaignsList,
+  addedCampaigns,
+}: Props) => {
   const [dropDownList, setDropDownList] = useState<string[]>([]);
   const [list, setList] = useState<Campaigns[]>([]);
 
@@ -44,6 +50,7 @@ const Campaigns = ({ getCampaigns, loading, campaignsList }: Props) => {
 
   useEffect(() => {
     if (campaignsList.length > 0) {
+      campaignsList = [...campaignsList, ...addedCampaigns];
       setList(campaignsList);
       const newList: string[] = campaignsList.map((item) => {
         return item.name;
@@ -101,11 +108,13 @@ const Campaigns = ({ getCampaigns, loading, campaignsList }: Props) => {
 
 Campaigns.prototype = {
   getCampaigns: PropTypes.func.isRequired,
-  campaignsList: PropTypes.object.isRequired,
+  campaignsList: PropTypes.array.isRequired,
+  addedCampaigns: PropTypes.array,
   loading: PropTypes.bool,
 };
 const mapStateToProps = (state: any) => ({
   campaignsList: state.chart.campaignsList,
+  addedCampaigns: state.chart.addedCampaigns,
   loading: state.chart.loading,
 });
 

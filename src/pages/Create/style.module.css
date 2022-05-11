@@ -1,0 +1,20 @@
+.label{
+    display: block;
+    margin-top:15px
+}
+.input{
+    display: block;
+    width: 100%; 
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    margin: 10px 0
+}
+
+.button{
+    background-color: rgb(43, 104, 156);
+    color: #fff;
+    border: 1px solid rgb(60, 60, 60);
+    padding:7px;
+    border-radius: 5px
+}

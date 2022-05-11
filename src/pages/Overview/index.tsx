@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getOverview } from 'redux/actions/chart';
-import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
+import { Grid, Container } from '@mui/material';
 import Loading from 'utils/Loading';
 import {
   LineChart,
