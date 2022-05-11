@@ -13,6 +13,7 @@ const Create = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    //set new data for our custom campaign
     const newData = {
       id: uuidv4(),
       name: value,
@@ -30,6 +31,7 @@ const Create = () => {
       type: ADD_CAMPAIGNS,
       payload: newData,
     });
+    //empty the input
     setValue('');
   };
   return (

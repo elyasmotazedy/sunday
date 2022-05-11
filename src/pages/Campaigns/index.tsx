@@ -50,17 +50,24 @@ const Campaigns = ({
 
   useEffect(() => {
     if (campaignsList.length > 0) {
+      //add our custom campaigns to the list
       campaignsList = [...campaignsList, ...addedCampaigns];
+      //set List for search when campaign changed
       setList(campaignsList);
+
+      // get te name in each campaign for select list
       const newList: string[] = campaignsList.map((item) => {
         return item.name;
       });
-      setValue(newList[0]);
+      //set list for loop select list
       setDropDownList(newList);
+      // initial for first look
+      setValue(newList[0]);
     }
   }, [campaignsList]);
 
   useEffect(() => {
+    //find the choosen campaign
     const selected = list.find((item) => item.name === value);
     setSelectedChart(selected);
   }, [value]);
